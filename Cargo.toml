@@ -1,7 +1,10 @@
 [package]
-name = "blitz"
+name = "blitz_lang"
 version = "0.1.0"
 edition = "2021"
-license = "MIT"
+license = "MIT OR Apache-2.0"
+authors = ["Asia22 <kirito234875@gmail.com>"]
+description = "A Hobby Programming Lang with Rust"
+readme = "readme.md"
 
 [dependencies]
