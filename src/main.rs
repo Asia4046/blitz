@@ -1,3 +1,6 @@
+mod scanner;
+use crate::scanner::*;
+
 use std::env;
 use std::fs;
 use std::io::{self, BufRead, Write};
@@ -10,12 +13,18 @@ fn run_file(path: &str) -> Result<(), String> {
     }
 }
 
-fn run(_contents: &str) -> Result<(), String> {
-    return Err("Not Implemented".to_string());
+fn run(contents: &str) -> Result<(), String> {
+    let scanner = Scanner::new(contents);
+    let tokens = scanner.scan_tokens()?;
+
+    for token in tokens {
+        println!("{:?}", token);
+    }
+    return Ok(());
 }
 
 fn run_prompt() -> Result<(), String> {
-    while true {
+     loop {
         print!("> ");
         let mut buffer = String::new();
 
@@ -29,7 +38,7 @@ fn run_prompt() -> Result<(), String> {
 
         match handle.read_line(&mut buffer) {
             Ok(n) => {
-                if n == 0 {
+                if n <= 1 {
                     return Ok(());
                 }
             },
@@ -37,7 +46,6 @@ fn run_prompt() -> Result<(), String> {
         }
         println!("You Wrote {}", buffer);
     }
-    Ok(())
 }
 
 fn main() {
