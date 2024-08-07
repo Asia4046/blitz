@@ -44,7 +44,11 @@ fn run_prompt() -> Result<(), String> {
             },
             Err(_) => return Err("Couldnt Read Line".to_string()),
         }
-        println!("You Wrote {}", buffer);
+        println!("ECHO {}", buffer);
+        match run(&buffer){
+            Ok(_) => (),
+            Err(msg) => println!("{}", msg),
+        }
     }
 }
 
