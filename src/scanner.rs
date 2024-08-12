@@ -28,6 +28,12 @@ pub enum TokenType {
     Eof
 }
 
+impl std::fmt::Display for TokenType {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 #[derive(Debug)]
 pub enum LiteralValue{
     IntValue(i64),
@@ -52,5 +58,9 @@ impl Token{
             literal, 
             line_number
         }
+    }
+
+    pub fn to_string(self: &Self) -> String {
+        format!("{} {} {:?}", self.token_type, self.lexeme, self.literal)       
     }
 }
